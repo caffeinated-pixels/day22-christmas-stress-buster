@@ -4,9 +4,11 @@ let affirmation = document.getElementById('affirmation')
 
 btn.addEventListener('click', startStopTimer)
 
-let timeLeft = 5
+let timeLeft = 900
 let isTimerRunning = false
 let intervalID = null
+
+const music = new Audio('./satie.mp3')
 
 function startStopTimer() {
   if (!isTimerRunning) {
@@ -17,9 +19,9 @@ function startStopTimer() {
 }
 
 function startTimer() {
-  console.log('start timer')
   isTimerRunning = true
   btn.textContent = 'pause'
+  music.play()
   intervalID = setInterval(() => {
     if (timeLeft > 0) {
       timeLeft--
@@ -31,7 +33,7 @@ function startTimer() {
 }
 
 function pauseTimer() {
-  console.log('pause timer')
+  music.pause()
   btn.textContent = 'resume'
   clearInterval(intervalID)
   isTimerRunning = false
@@ -42,6 +44,8 @@ function endTimer() {
   isTimerRunning = false
   timeLeft = 900
   btn.textContent = 'restart'
+  music.pause()
+  music.currentTime = 0
 }
 
 function updateTimeDisplay() {
