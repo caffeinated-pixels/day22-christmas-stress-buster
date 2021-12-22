@@ -13,7 +13,7 @@ function startStopTimer() {
     console.log('start timer')
     intervalID = setInterval(() => {
       timeLeft--
-      console.log(timeLeft)
+      updateTimeDisplay()
     }, 1000)
     isTimerRunning = true
   } else {
@@ -21,6 +21,12 @@ function startStopTimer() {
     clearInterval(intervalID)
     isTimerRunning = false
   }
+}
+
+function updateTimeDisplay() {
+  const minutes = Math.floor(timeLeft / 60)
+  const seconds = timeLeft % 60
+  timer.textContent = `${minutes}:${seconds}`
 }
 
 // Task:
