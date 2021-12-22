@@ -45,8 +45,11 @@ function endTimer() {
 }
 
 function updateTimeDisplay() {
-  const minutes = Math.floor(timeLeft / 60)
-  const seconds = timeLeft % 60
+  let minutes = Math.floor(timeLeft / 60).toString()
+  if (minutes.length < 2) minutes = `0${minutes}`
+
+  let seconds = (timeLeft % 60).toString()
+  if (seconds.length < 2) seconds = `0${seconds}`
   timer.textContent = `${minutes}:${seconds}`
 }
 
