@@ -11,6 +11,7 @@ let intervalID = null
 function startStopTimer() {
   if (!isTimerRunning) {
     console.log('start timer')
+    btn.textContent = 'pause'
     intervalID = setInterval(() => {
       timeLeft--
       updateTimeDisplay()
@@ -18,6 +19,7 @@ function startStopTimer() {
     isTimerRunning = true
   } else {
     console.log('pause timer')
+    btn.textContent = 'resume'
     clearInterval(intervalID)
     isTimerRunning = false
   }
