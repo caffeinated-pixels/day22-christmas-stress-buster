@@ -4,7 +4,7 @@ let affirmation = document.getElementById('affirmation')
 
 btn.addEventListener('click', startStopTimer)
 
-let timeLeft = 900
+let timeLeft = 5
 let isTimerRunning = false
 let intervalID = null
 
@@ -18,12 +18,16 @@ function startStopTimer() {
 
 function startTimer() {
   console.log('start timer')
+  isTimerRunning = true
   btn.textContent = 'pause'
   intervalID = setInterval(() => {
-    timeLeft--
-    updateTimeDisplay()
+    if (timeLeft > 0) {
+      timeLeft--
+      updateTimeDisplay()
+    } else {
+      endTimer()
+    }
   }, 1000)
-  isTimerRunning = true
 }
 
 function pauseTimer() {
@@ -31,6 +35,13 @@ function pauseTimer() {
   btn.textContent = 'resume'
   clearInterval(intervalID)
   isTimerRunning = false
+}
+
+function endTimer() {
+  clearInterval(intervalID)
+  isTimerRunning = false
+  timeLeft = 900
+  btn.textContent = 'restart'
 }
 
 function updateTimeDisplay() {
