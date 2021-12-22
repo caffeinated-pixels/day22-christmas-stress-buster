@@ -10,19 +10,27 @@ let intervalID = null
 
 function startStopTimer() {
   if (!isTimerRunning) {
-    console.log('start timer')
-    btn.textContent = 'pause'
-    intervalID = setInterval(() => {
-      timeLeft--
-      updateTimeDisplay()
-    }, 1000)
-    isTimerRunning = true
+    startTimer()
   } else {
-    console.log('pause timer')
-    btn.textContent = 'resume'
-    clearInterval(intervalID)
-    isTimerRunning = false
+    pauseTimer()
   }
+}
+
+function startTimer() {
+  console.log('start timer')
+  btn.textContent = 'pause'
+  intervalID = setInterval(() => {
+    timeLeft--
+    updateTimeDisplay()
+  }, 1000)
+  isTimerRunning = true
+}
+
+function pauseTimer() {
+  console.log('pause timer')
+  btn.textContent = 'resume'
+  clearInterval(intervalID)
+  isTimerRunning = false
 }
 
 function updateTimeDisplay() {
